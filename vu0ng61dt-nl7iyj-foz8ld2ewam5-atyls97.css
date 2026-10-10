@@ -499,3 +499,53 @@ main.soon{display:grid;place-items:center;padding-bottom:60px;}
   color:#fff;text-align:center;text-shadow:0 3px 0 rgba(0,0,0,.5);
   font-size:clamp(3.5rem,14vw,8rem);line-height:1.15;padding:6px 0 10px;
 }
+
+/* ---------- Устав ---------- */
+.charter{display:flex;flex-direction:column;gap:56px;margin-top:40px;padding-bottom:20px;}
+.charter .dlg{max-width:none;padding-top:58px;}
+.charter .dlg-name{font-size:1.3rem;}
+.charter .dlg-box{padding:30px 34px 28px;}
+.charter-list{list-style:none;margin:0;padding:0;counter-reset:rule;}
+.charter-list li{
+  counter-increment:rule;
+  position:relative;
+  display:grid;grid-template-columns:52px 1fr;column-gap:20px;align-items:start;
+  padding:18px 0;
+  border-top:2px dashed rgba(255,255,255,.2);
+}
+.charter-list li:first-child{border-top:0;padding-top:4px;}
+.charter-list li:last-child{padding-bottom:4px;}
+.charter-list li::before{
+  content:counter(rule);
+  grid-row:1 / span 2;
+  width:44px;height:44px;
+  display:grid;place-items:center;
+  background:var(--yellow);color:var(--ink);
+  font:italic 900 1.45rem/1 'Playfair Display','Oswald',serif;
+  transform:skewX(-10deg);
+  box-shadow:4px 4px 0 var(--red);
+  margin-top:2px;
+}
+.charter-list li p{margin:0;font-size:1.02rem;line-height:1.65;}
+.charter-list .tag{
+  display:inline-block;margin-right:8px;padding:0 10px;
+  font:italic 700 .8rem/1.7 'Oswald',sans-serif;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink);background:#7fd3ee;
+  transform:skewX(-12deg);
+}
+.charter-list .ex{grid-column:2;margin-top:8px;font-size:.96rem;line-height:1.6;color:#e9e6cf;}
+.charter-list .ex .tag{background:#7fd3ee;}
+.penalty{
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;
+  margin-top:26px;padding:14px 22px;
+  background:var(--ink);color:#fff;
+  border-left:10px solid var(--red);border-radius:8px;
+  box-shadow:5px 5px 0 rgba(0,0,0,.35);
+  font-weight:700;
+}
+.penalty .tag{background:var(--red);color:#fff;margin:0;}
+@media (max-width:560px){
+  .charter .dlg-box{padding:24px 18px 22px;}
+  .charter-list li{grid-template-columns:40px 1fr;column-gap:14px;}
+  .charter-list li::before{width:36px;height:36px;font-size:1.2rem;}
+}
