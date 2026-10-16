@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<meta name="referrer" content="no-referrer">
+<meta name="referrer" content="no-referrer-when-downgrade">
 <title>Правила сервера Fleur</title>
 <link rel="icon" type="image/png" href="fleur-demon-slayer-administration-emblem-logo.png">
 <style>
@@ -186,6 +186,12 @@ footer{
   .hero h1,.hero p,.emblem,.slash i{animation:none;}
   .toc a{transition:none;}
 }
+.zone-img:hover{opacity:0.85;transition:opacity .2s ease;}
+#imageModal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.9);padding:20px;box-sizing:border-box;overflow:auto;}
+#imageModal.active{display:flex;align-items:center;justify-content:center;}
+#imageModal img{max-width:90%;max-height:90vh;object-fit:contain;}
+#imageModal .close{position:absolute;top:20px;right:30px;font-size:40px;font-weight:bold;color:#f1f1f1;cursor:pointer;z-index:1001;background:rgba(0,0,0,.7);width:50px;height:50px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:none;padding:0;}
+#imageModal .close:hover{background:rgba(255,255,255,.3);}
 </style>
 </head>
 <body>
@@ -348,7 +354,7 @@ footer{
           <p><b>2.1</b> <b>NLR (New Life Rule)</b> - после смерти персонаж забывает события, приведшие к ней, и 5 минут не возвращается на место гибели.</p>
         </div>
         <div class="rule">
-          <p><b>2.2</b> <b>NonRP</b> - поведение, не соответствующее логике, атмосфере и реалиям мира (Япония XX века и вселенная Demon Slayer).</p>
+          <p><b>2.2</b> <b>NonRP</b> - поведение, нарушающее RP-сцену и иммерсию игровой сессии, не соответствующее логике, атмосфере и реалиям мира (Япония XX века и вселенная Demon Slayer).</p>
           <ul>
             <li>Выход из активной RP-сцены без завершения отыгрыша или уведомления участников;</li>
             <li>Смена персонажа с помощью привилегии/механики сервера во время RP-сцены;</li>
@@ -373,14 +379,34 @@ footer{
           <p><b>2.7</b> <b>Bug Abuse</b> - использование уязвимостей сервера и игры в корыстных целях.</p>
         </div>
         <div class="rule">
-          <p><b>2.9</b> <b>GzAbuse (Green Zone Abuse)</b> - злоупотребление зелёной зоной, чтобы уйти от погони или RP, а также кемпинг противника рядом. Спавн скитальцев кемперить запрещено.</p>
+          <p><b>2.9</b> <b>GzAbuse (Green Zone Abuse)</b> - злоупотребление зелёной зоной, чтобы уйти от погони, сражения или RP, а также кемпинг зелёной зоны противоположной фракции. Кемперство спавна скитальцев считается нарушением.</p>
           <ul>
-            <li><b>Зелёные зоны истребителей:</b> Корпус и поместье бабочки.</li>
-            <li><b>Зелёная зона демонов:</b> Крепость бесконечности.</li>
-            <li><b>Жёлтые зоны:</b> локации с пониженным механическим боем, где основной упор делается на RP и коммуникацию между истребителями и демонами. Здесь проходят RP-сражения, однако механические бои не отменяются полностью. Демоны обязаны находиться в этих локациях в маскировке. Сюда относится Лес с озером.
-              <div class="note">Исключения: Высшая луна или демон, чья модель похожа на человека (без рогов, когтей, глаз демона); если демон согласен на механическое сражение.</div>
+            <li>
+              <b>Зелёные зоны истребителей:</b> Штаб истребителей и прилегающие к нему зоны (гора Финального отбора, поместье Бабочек и Убуяшики). Безопасная зона для истребителей демонов — демонам строго запрещено находиться внутри.
+              <img src="https://i.imgur.com/VQbxZfz.jpeg" alt="Зелёные зоны истребителей" loading="lazy" style="max-width:100%;width:100%;height:auto;margin-top:10px;border-radius:4px;display:block;cursor:pointer;" class="zone-img" onclick="openModal(this)">
+              <div class="note">Исключение: Проведение ивента; участникам и ведущим финального отбора.</div>
             </li>
-            <li><b>Красные зоны:</b> локации, где находятся точки для захвата. Зоны повышенного механического боя.</li>
+            <li>
+              <b>Зелёная зона демонов:</b> Вся крепость бесконечности. Безопасная зона для демонов — истребителям демонов строго запрещено находиться внутри.
+              <img src="https://i.imgur.com/MvPiEYq.jpeg" alt="Зелёная зона демонов" loading="lazy" style="max-width:100%;width:100%;height:auto;margin-top:10px;border-radius:4px;display:block;cursor:pointer;" class="zone-img" onclick="openModal(this)">
+              <div class="note">Исключение: Проведение ивента.</div>
+            </li>
+            <li>
+              <b>Жёлтые зоны:</b> Лес с озером, Деревня кузнецов, Ёсивара (Квартал красных фонарей). Локации с пониженным механическим боем, где основной упор делается на RP и коммуникацию между истребителями и демонами. Здесь проходят RP-сражения, однако механические бои не отменяются полностью. Демоны обязаны находиться в этих локациях в маскировке.
+              <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+                <img src="https://i.imgur.com/Ecb7gfP.jpeg" alt="Лес с озером" loading="lazy" style="max-width:100%;width:100%;height:auto;border-radius:4px;display:block;cursor:pointer;" class="zone-img" onclick="openModal(this)">
+                <img src="https://i.imgur.com/dC2dnEE.jpeg" alt="Деревня кузнецов" loading="lazy" style="max-width:100%;width:100%;height:auto;border-radius:4px;display:block;cursor:pointer;" class="zone-img" onclick="openModal(this)">
+                <img src="https://i.imgur.com/Wbd1bcU.jpeg" alt="Ёсивара" loading="lazy" style="max-width:100%;width:100%;height:auto;border-radius:4px;display:block;cursor:pointer;" class="zone-img" onclick="openModal(this)">
+              </div>
+              <div class="note">Исключения: Высшая луна или демон, чья модель похожа на человека (без рогов, когтей, глаз демона); если демон согласен на механическое сражение; Высшая луна.</div>
+            </li>
+            <li>
+              <b>Красные зоны:</b> Асакуса и прилежащие к ней леса, где находятся точки для захвата. Зоны повышенного механического боя, но RP не отменяется полностью.
+              <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+                <img src="https://i.imgur.com/T2KsJ3k.jpeg" alt="Асакуса" loading="lazy" style="max-width:100%;width:100%;height:auto;border-radius:4px;display:block;cursor:pointer;" class="zone-img" onclick="openModal(this)">
+                <img src="https://i.imgur.com/Udawoyg.jpeg" alt="Прилежащие леса" loading="lazy" style="max-width:100%;width:100%;height:auto;border-radius:4px;display:block;cursor:pointer;" class="zone-img" onclick="openModal(this)">
+              </div>
+            </li>
           </ul>
         </div>
         <div class="rule">
@@ -599,6 +625,40 @@ footer{
   }, { rootMargin: '-20% 0px -65% 0px' });
   document.querySelectorAll('section[id]').forEach(function (s) { io.observe(s); });
 })();
+</script>
+
+<div id="imageModal">
+  <button class="close" onclick="closeModal()">&times;</button>
+  <img id="modalImage" src="" alt="">
+</div>
+
+<script>
+function openModal(img) {
+  var modal = document.getElementById('imageModal');
+  var modalImg = document.getElementById('modalImage');
+  modalImg.src = img.src;
+  modalImg.alt = img.alt;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  var modal = document.getElementById('imageModal');
+  modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+document.getElementById('imageModal').addEventListener('click', function(event) {
+  if (event.target === this) {
+    closeModal();
+  }
+});
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeModal();
+  }
+});
 </script>
 </body>
 </html>
